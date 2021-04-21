@@ -1,6 +1,8 @@
-package com.example.daggerlogin;
+package com.example.daggerlogin.root;
 
 import android.app.Application;
+
+import com.example.daggerlogin.login.LoginModule;
 
 public class App extends Application {
     //Aquí tenemos que hacer la lógica
@@ -10,7 +12,10 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         //Inicialización alternativa
-        component = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+        component = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .loginModule(new LoginModule())
+                .build();
     }
 
     public ApplicationComponent getComponent(){
